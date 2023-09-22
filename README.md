@@ -20,7 +20,15 @@ $File = "C:\Users\Administrateur\Documents\Checkpoint\users.cvs"
 $FileCsv = Import-Csv -Path $File -Delimiter ";" -Header "prenom", "nom", "societe", "fonction", "service", "description", "mail", "mobile", "scriptPath", "telephoneNumber" -Encoding UTF7
 
 ###
-$A
+$ADUsers = Get-AdUser -Filter * -Properties SamAccountName
+
+Foreach (User in $FileCsv)
+{
+$SamAccountName = "$(User.prenom) , $($User.nom)"
+$ResCheckADUsers | Where {$_.SamAccountName -eq $SamAccountName}
+If ($ResCheckADUser -eq $null)
+{
+    ###
 
 
 
