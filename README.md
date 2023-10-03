@@ -73,7 +73,7 @@ Foreach (User in $FileCsv)
         $GivenName = $User.prenom
         $Surname = $User.nom
         $DisplayName = $SamAccountName
-        $Path = "OU=$($User.service) ,OU=Utilisateurs,DC=Sweetcakes,DC=net"
+        $Path = "OU=$($User.service) ,OU=Utilisateurs,DC=$User.societe,DC=net"
         $Company = $User.societe
 
         ###
@@ -96,7 +96,7 @@ Foreach (User in $FileCsv)
             -Description $User.description `
             -ScriptPath $ScripthPath `
 
-    Write-Host "Le compte $Name a été crée `nLe mot de passe est $Password"
+    Write-Host "Le compte $Name a été crée `nLe mot de passe est $NouveauMotDePasse"
     }
     Else
     {
